@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 3 Months, My Love!</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #f5f5f5;
+    text-align: center;
+    padding: 50px;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #ff5fa2;
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,95,162,0.6);
+}
+
+#counter {
+    margin: 20px 0 30px;
+    font-size: 20px;
+    color: #ffb6d9;
+    text-shadow: 0 0 12px rgba(255,182,217,0.8);
+}
+
+.message {
+    max-width: 650px;
+    margin: auto;
+    background: rgba(255,255,255,0.08);
+    padding: 30px;
+    border-radius: 18px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -20px;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%,100%{opacity:.2}
+    50%{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<h1 id="title"></h1>
+
+<div id="counter">
+    <span id="time"></span>
+</div>
+
+<div class="message">
+    <p>
+        Hii Bachaa ❤️  
+        Aaj humlog ka 3 months complete ho gaya, aur pata hi nahi chala ye din kaise nikal gaye.
+        Jab pehli baar aapka message aaya tha, humne kabhi socha bhi nahi tha
+        ki hum itne close aa jayenge aur aap meri poori duniya ban jaoge.
+    </p>
+
+    <p>
+        Kabhi-kabhi lagta hai jaise hum ek-dusre ko bahut time se jaante ho,
+        shayad isliye kyunki hum ek-dusre ko samajhte hain.
+    </p>
+
+    <p>
+        You are my peace, Bachaa 💖
+    </p>
+
+    <p>
+        Yours forever,<br>
+        <b>Your Atif</b>
+    </p>
+</div>
+
+<script>
+// ⭐ Stars
+const stars = document.querySelector(".stars");
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    stars.appendChild(star);
+}
+
+// 💖 Floating hearts
+setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💖";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (18 + Math.random() * 20) + "px";
+    h.style.animationDuration = "5s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+}, 400);
+
+// 💌 Typewriter
+const text = "Happy 3 Months Anniversary, My Love Akifa!";
+let i = 0;
+function type() {
+    if (i < text.length) {
+        title.innerHTML += text[i++];
+        setTimeout(type, 80);
+    }
+}
+type();
+
+// ⏳ Live Counter (FIX DATE IF NEEDED)
+const startDate = new Date("2025-09-13T11:53:00");
+
+function update() {
+    const diff = new Date() - startDate;
+    const s = Math.floor(diff / 1000) % 60;
+    const m = Math.floor(diff / 60000) % 60;
+    const h = Math.floor(diff / 3600000) % 24;
+    const d = Math.floor(diff / 86400000);
+    time.innerHTML = `Together for <b>${d}</b> days ${h}h ${m}m ${s}s 💖`;
+}
+setInterval(update, 1000);
+update();
+</script>
+
+</body>
+</html>
