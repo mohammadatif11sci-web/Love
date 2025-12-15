@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 3 Months, My Love!</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #f5f5f5;
+            text-align: center;
+            padding: 50px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #ff5fa2;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 95, 162, 0.6);
+        }
+
+        #counter {
+            margin: 20px 0 30px;
+            font-size: 20px;
+            color: #ffb6d9;
+            text-shadow: 0 0 12px rgba(255, 182, 217, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 20px;
+            color: #ff5fa2;
+            animation: floatUp linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+            text-shadow: 0 0 8px rgba(255, 95, 162, 0.8);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            opacity: 0.8;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<h1></h1>
+
+<div id="counter">
+    <span id="time"></span>
+</div>
+
+<div class="message">
+    <p>
+        Hii Bachaa ❤️  
+        Aaj humlog ka 3 months complete ho gaya, aur pata hi nahi chala ye din kaise nikal gaye.
+        Jab pehli baar aapka message aaya tha, humne kabhi socha bhi nahi tha
+        ki hum itne close aa jayenge aur aap meri poori duniya ban jaoge.
+    </p>
+
+    <p>
+        Kabhi-kabhi lagta hai jaise hum ek-dusre ko bahut time se jaante ho,
+        shayad isliye kyunki hum ek-dusre ko samajhte hain.
+    </p>
+
+    <p>
+        Aap jabse meri zindagi mein aaye ho,
+        aapne mujhe itna motivate kiya hai jitna shayad kisi ne nahi kiya.
+        Aap jaisa partner milna makes me feel like
+        I’m the luckiest person in this world.
+    </p>
+
+    <p>
+        Main aapko bahut miss karta hoon.
+        Aap mere liye sab kuch ho.
+        Main wada karta hoon ki hamesha aapke saath rahunga —
+        <b>Fi Duniya Wal Akhirah</b>.
+    </p>
+
+    <p>
+        You are my peace, Bachaa 💖
+    </p>
+
+    <p>
+        Yours forever,<br>
+        <b>Your Atif</b>
+    </p>
+</div>
+
+<script>
+/* 💖 Floating Hearts */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = ["❤️","💖","💘","💞"][Math.floor(Math.random()*4)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    heart.style.fontSize = (18 + Math.random() * 22) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}
+setInterval(createHeart, 350);
+
+/* 🌌 Stars */
+const stars = document.querySelector(".stars");
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 3 + "s";
+    stars.appendChild(star);
+}
+
+/* 🖱️ Click Hearts */
+document.addEventListener("click", (e) => {
+    for (let i = 0; i < 6; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = e.clientX + (Math.random()*40 - 20) + "px";
+        heart.style.top = e.clientY + "px";
+        heart.style.animationDuration = "2s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+    }
+});
+
+/* 💌 Typewriter Title */
+const titleText = "Happy 3 Months Anniversary, My Love Akifa!";
+let index = 0;
+const titleEl = document.querySelector("h1");
+
+function typeEffect() {
+    if (index < titleText.length) {
+        titleEl.innerHTML += titleText.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80);
+    }
+}
+typeEffect();
+
+/* ⏳ Live Counter */
+const startDate = new Date("2025-09-13T11:53:00");
+
+function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const seconds = Math.floor(diff / 1000) % 60;
+    const minutes = Math.floor(diff / (1000*60)) % 60;
+    const hours = Math.floor(diff / (1000*60*60)) % 24;
+    const daysTotal = Math.floor(diff / (1000*60*60*24));
+    const months = Math.floor(daysTotal / 30);
+    const days = daysTotal % 30;
+
+    document.getElementById("time").innerHTML =
+        `Together for <b>${months}</b> months, <b>${days}</b> days,
+        <b>${hours}</b> hours, <b>${minutes}</b> minutes &
+        <b>${seconds}</b> seconds 💖`;
+}
+updateCounter();
+setInterval(updateCounter, 1000);
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Ask permission (works inside APK WebView)
+    if ("Notification" in window) {
+        if (Notification.permission === "granted") {
+            showLoveNotification();
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    showLoveNotification();
+                }
+            });
+        }
+    }
+});
+
+function showLoveNotification() {
+    new Notification("I love you ❤️", {
+        body: "Forever yours — Atif",
+        icon: "https://cdn-icons-png.flaticon.com/512/833/833472.png"
+    });
+}
+</script>
+</body>
+</html>
