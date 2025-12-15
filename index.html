@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 3 Months, My Love!</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #f5f5f5;
+    text-align: center;
+    padding: 50px;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #ff5fa2;
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,95,162,0.6);
+}
+
+#counter {
+    margin: 20px 0 30px;
+    font-size: 20px;
+    color: #ffb6d9;
+    text-shadow: 0 0 12px rgba(255,182,217,0.8);
+}
+
+.message {
+    max-width: 650px;
+    margin: auto;
+    background: rgba(255,255,255,0.08);
+    padding: 30px;
+    border-radius: 18px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -20px;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%,100%{opacity:.2}
+    50%{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<h1 id="title"></h1>
+
+<div id="counter">
+    <span id="time"></span>
+</div>
+
+<div class="message">
+    <p>Hii Bachaa, Aaj humlog ko 3 months pura hogaya or ye din kab nikal gaya pata bhi nhi chala, Jab pheli baar apka msg aaya tha hum soche nhi thy ki humlog itne close aayenge or ap meri  puri duniya baan jaoge..Kabhi kabhi tho lagta hai ki humlog ek dusre ko bhut time se jante hai.. maybe humlog ek dusre ko samajhte hai isliyee.</p>
+        <p>Ap jabse humko mile ho hum beta nhi sakte kitna motivate krte ap humko.. Apke jesa partner is felt like i'm the most luckiest person in this World.</p>
+        <p>Hum Apko bhut miss krte hai no matter hum kya kr rhe ho.. but her time agar msg krte rhenge tho ap disturb ho jaoge isliye msg nhi krte her waqt.. AP mere liye sab kuch ho, And I promise to be with u forever ya 'Fi Duniya Wal Akhirah' I miss you Soo So much.. And I'll Always Love you no matter what.. You are my peace Bachaa.</p>
+        <p>Yours forever,<br>Your Atif</p>
+</div>
+
+<script>
+// ⭐ Stars
+const stars = document.querySelector(".stars");
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    stars.appendChild(star);
+}
+
+// 💖 Floating hearts (MORE HEARTS + VARIETY)
+const heartEmojis = ["❤️","💖","💘","💞","💕","💓","💗","💝"];
+
+setInterval(() => {
+    for (let i = 0; i < 3; i++) {   // 👈 creates multiple hearts at once
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = (16 + Math.random() * 26) + "px";
+        h.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 8000);
+    }
+}, 300); // 👈 faster frequency
+
+// 💌 Typewriter
+const text = "Happy 3 Months Anniversary, My Love Akifa!";
+let i = 0;
+function type() {
+    if (i < text.length) {
+        title.innerHTML += text[i++];
+        setTimeout(type, 80);
+    }
+}
+type();
+
+// ⏳ Live Counter (FIX DATE IF NEEDED)
+const startDate = new Date("2025-09-13T23:53:00");
+
+function update() {
+    const diff = new Date() - startDate;
+    const s = Math.floor(diff / 1000) % 60;
+    const m = Math.floor(diff / 60000) % 60;
+    const h = Math.floor(diff / 3600000) % 24;
+    const d = Math.floor(diff / 86400000);
+    time.innerHTML = `Together for <b>${d}</b> days ${h}h ${m}m ${s}s 💖`;
+}
+setInterval(update, 1000);
+update();
+</script>
+
+</body>
+</html>
