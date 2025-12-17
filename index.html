@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 3 Months, My Love!</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #f5f5f5;
+    text-align: center;
+    padding: 50px;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #ff5fa2;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+#counter {
+    margin: 20px 0 30px;
+    font-size: 20px;
+    color: #ffb6d9;
+}
+
+.message {
+    max-width: 650px;
+    margin: auto;
+    background: rgba(255,255,255,0.08);
+    padding: 30px;
+    border-radius: 18px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -20px;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<h1 id="title"></h1>
+
+<div id="counter">
+    <span id="time"></span>
+</div>
+
+<div class="message" id="editableMessage" contenteditable="true">
+    <p>Click here and edit this message ❤️</p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const title = document.getElementById("title");
+    const time = document.getElementById("time");
+    const editable = document.getElementById("editableMessage");
+
+    // ⭐ Stars
+    const stars = document.querySelector(".stars");
+    for (let i = 0; i < 120; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.left = Math.random() * 100 + "%";
+        stars.appendChild(star);
+    }
+
+    // 💖 Hearts
+    const hearts = ["❤️","💖","💘","💞"];
+    setInterval(() => {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
+        h.style.left = Math.random()*100 + "vw";
+        h.style.fontSize = "24px";
+        h.style.animationDuration = "5s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),6000);
+    }, 400);
+
+    // 💌 Typewriter
+    const text = "Happy 3 Months Anniversary ❤️";
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            title.innerHTML += text[i++];
+            setTimeout(type, 80);
+        }
+    }
+    type();
+
+    // ⏳ Counter (PAST DATE ✅)
+    const startDate = new Date("2025-09-13T23:53:00");
+
+    function update() {
+        const diff = new Date() - startDate;
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor(diff / 3600000) % 24;
+        const m = Math.floor(diff / 60000) % 60;
+        const s = Math.floor(diff / 1000) % 60;
+        time.innerHTML = `Together for ${d} days ${h}h ${m}m ${s}s 💖`;
+    }
+    setInterval(update, 1000);
+    update();
+
+    // 💾 Save editable text
+    if (localStorage.getItem("savedMessage")) {
+        editable.innerHTML = localStorage.getItem("savedMessage");
+    }
+
+    editable.addEventListener("input", () => {
+        localStorage.setItem("savedMessage", editable.innerHTML);
+    });
+
+});
+</script>
+
+</body>
+</html>
